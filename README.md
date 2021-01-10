@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Change URI in .env with your URI key from Atlas MongoDB.
+
+First time Open in terminal
+npm install
+
+Error type : 'react-scripts' is not recognized as an internal or external command
+To pass error write in terminal npm install react-scripts --save
+
+Start backend
+node server.js
+
+Start frontend
+npm start 
+
