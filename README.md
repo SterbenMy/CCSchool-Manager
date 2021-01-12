@@ -71,10 +71,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Create .env file in AuthBack:\
     add mongodb atlasUri(ATLAS_URI=YOUR_URI) \
-    add JWT secret (JWT_SECRET=YOUR_SECRET)\
+    add JWT secret (JWT_SECRET=YOUR_SECRET)
 
 Create .env file in BackStudentiClase:\
-    add mongodb atlasUri(ATLAS_URI=YOUR_URI) \
+    add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
 
 First time: \
 npm i in AuthBack\
