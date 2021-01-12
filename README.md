@@ -85,7 +85,7 @@ Create .env file in BackStudentiClase:\
 ### Start backend\
 ### 'node server.js'
 
-### Start frontend\
+### Start frontend
 ### 'npm start'
 
 ### Start AuthBack\
