@@ -45,7 +45,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
     add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
     add JWT secret (JWT_SECRET=YOUR_SECRET)
 
-### Create .env file in BackStudentiClase:\
+### Create .env file in BackStudentiClase:
     add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
 
 ### First time: 
