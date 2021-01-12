@@ -73,7 +73,7 @@ Create .env file in AuthBack:
     add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
     add JWT secret (JWT_SECRET=YOUR_SECRET)
 
-Create .env file in AuthBack:
+Create .env file in BackStudentiClase:
     add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
 
 First time: 
