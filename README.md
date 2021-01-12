@@ -69,18 +69,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+Create .env file in AuthBack:
+    add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
+    add JWT secret (JWT_SECRET=YOUR_SECRET)
 
-Change URI in .env with your URI key from Atlas MongoDB.
+Create .env file in AuthBack:
+    add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
 
-First time Open in terminal
-npm install
+First time: 
+npm i in AuthBack
+npm i in BackStudentiClase
+npm i in School-Manager
 
-Error type : 'react-scripts' is not recognized as an internal or external command
-To pass error write in terminal npm install react-scripts --save
 
 Start backend
 node server.js
 
 Start frontend
-npm start 
+npm start
+
+Start AuthBack
+node index.js
 
