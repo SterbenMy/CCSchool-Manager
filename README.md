@@ -82,12 +82,12 @@ npm i in BackStudentiClase
 npm i in School-Manager
 
 
-Start backend---
+Start backend\
 node server.js
 
-Start frontend---
+Start frontend\
 npm start
 
-Start AuthBack---
+Start AuthBack\
 node index.js)
 
