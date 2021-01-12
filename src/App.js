@@ -13,12 +13,12 @@ import Navbar from "./components/navbar.component"
 import StudentsList from "./components/students-list.component";
 import EditStudent from "./components/edit-students.component";
 import CreateStudents from "./components/create-students.component";
-//import StudentsDetails from './components/students-details.component';
+import StudentsDetails from './components/students-details.component';
 //Clasele
 import CreateClasses from "./components/create-classes.component";
 import EditClasses from "./components/edit-classes.component";
 import ListClasses from "./components/list-classes.component";
-//import ClassDetails from './components/classes-details.component';
+import ClassDetails from './components/classes-details.component';
 //About
 import About from './components/about.component';
 
