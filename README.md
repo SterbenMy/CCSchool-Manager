@@ -69,25 +69,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-Create .env file in AuthBack:
-    add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
-    add JWT secret (JWT_SECRET=YOUR_SECRET)
+Create .env file in AuthBack:\
+    add mongodb atlasUri(ATLAS_URI=YOUR_URI) \
+    add JWT secret (JWT_SECRET=YOUR_SECRET)\
 
-Create .env file in BackStudentiClase:
-    add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
+Create .env file in BackStudentiClase:\
+    add mongodb atlasUri(ATLAS_URI=YOUR_URI) \
 
-First time: 
-npm i in AuthBack
-npm i in BackStudentiClase
-npm i in School-Manager
+First time: \
+npm i in AuthBack\
+npm i in BackStudentiClase\
+npm i in School-Manager\
 
 
 Start backend\
-node server.js
+node server.js\
 
 Start frontend\
-npm start
+npm start\
 
 Start AuthBack\
-node index.js)
+node index.js\
 
