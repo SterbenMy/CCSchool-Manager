@@ -77,17 +77,17 @@ Create .env file in BackStudentiClase:\
     add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
 
 ### First time: 
-### `npm i` in AuthBack
-### `npm i` in BackStudentiClase
-### `npm i` in School-Manager
+### `npm i` in AuthBack folder
+### `npm i` in BackStudentiClase folder
+### `npm i` in School-Manager folder
 
 
-### Start backend
+### Start BackStudentiClase in BackStudentiClase folder
 ### `node server.js`
 
-### Start frontend
+### Start School-Manager(frontend) in School-Manager folder
 ### `npm start`
 
-### Start AuthBack
+### Start AuthBack in AuthBack folder
 ### `node index.js`
 
