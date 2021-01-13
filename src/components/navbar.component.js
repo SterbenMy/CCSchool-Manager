@@ -5,7 +5,7 @@ export default class Navbar extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <Link to="/" className="navbar-brand" >School Manager</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -20,7 +20,7 @@ export default class Navbar extends Component {
                             <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Students</Link>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <Link className="dropdown-item" to="/student">List Students</Link>
+                                <Link className="dropdown-item" to="/student">Students List</Link>
                                 <Link className="dropdown-item" to="/student/create">Add Student</Link>
                                 {/* <Link className="dropdown-item" to="/">Edit Student</Link> */}
                             </div>
@@ -29,7 +29,7 @@ export default class Navbar extends Component {
                             <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Classes</Link>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <Link className="dropdown-item" to="/class">List Classes</Link>
+                                <Link className="dropdown-item" to="/class">Classes List</Link>
                                 <Link className="dropdown-item" to="/class/create">Add Class</Link>
                                 {/* <Link className="dropdown-item" to="/">Edit Class </Link> */}
                             </div>
@@ -39,6 +39,5 @@ export default class Navbar extends Component {
                 <AuthOptions />
             </nav>
         );
-
     }
 }
