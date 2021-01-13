@@ -47,13 +47,16 @@ export default class ListClasses extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Logged clasa</h3>
-        <table className="table">
+      <div className="container">
+        <div>
+          <h3>Classes List</h3>
+        </div>
+        <div>
+          <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>Nume Clasa</th>
-              <th>An</th>
+              <th>Class name</th>
+              <th>Year</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -61,6 +64,8 @@ export default class ListClasses extends Component {
             { this.clasaList() }
           </tbody>
         </table>
+        </div>  
+        
       </div>
     )
   }
