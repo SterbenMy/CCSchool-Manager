@@ -51,17 +51,20 @@ export default class StudentsList extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Logged Student</h3>
-        <table className="table">
+      <div className="page container">
+        <div>
+          <h3>Students List</h3>
+        </div>
+        <div>
+          <table className="table">
           <thead className="thead-light">
             <tr>
-              <th>Nume </th>
-              <th>Prenume </th>
-              <th>Ani </th>
-              <th>Mail </th>
-              <th>Sex</th>
-              <th>Clasa</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Age</th>
+              <th>E-mail</th>
+              <th>Gender</th>
+              <th>Class</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -69,6 +72,8 @@ export default class StudentsList extends Component {
             { this.studentsList() }
           </tbody>
         </table>
+          </div>      
+        
       </div>
     )
   }
