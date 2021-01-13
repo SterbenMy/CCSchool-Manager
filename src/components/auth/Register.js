@@ -36,40 +36,48 @@ export default function Register() {
   };
 
   return (
-    <div className="page">
-      <h2>Register</h2>
+    <div className="page container">
+      <div className="row g-3 m-3"><h2>Register</h2>
       {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
       )}
-      <form className="form" onSubmit={submit}>
-        <label htmlFor="register-email">Email</label>
-        <input
-          id="register-email"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label htmlFor="register-password">Password</label>
-        <input
+      </div>
+      <div>
+        <form className="form" onSubmit={submit}>
+          <div>
+            <label className="col-md-1 m-2" htmlFor="register-email">Email</label>
+            <input className="col-md-3 m-2"
+              id="register-email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+        <div>
+          <label className="col-md-1 m-2" htmlFor="register-password">Password</label>
+        <input className="col-md-3 m-2"
           id="register-password"
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input
+        <input className="col-md-3 m-2"
           type="password"
           placeholder="Verify password"
           onChange={(e) => setPasswordCheck(e.target.value)}
         />
-
-        <label htmlFor="register-display-name">Display name</label>
-        <input
+        </div>
+        <div>
+          <label className="col-md-1 m-2" htmlFor="register-display-name">Display name</label>
+        <input className="col-md-4 m-2"
           id="register-display-name"
           type="text"
           onChange={(e) => setDisplayName(e.target.value)}
         />
-
-        <input type="submit" value="Register" />
+        </div>
+        <div className="flex-row-reverse m-3">
+          <input type="submit" className="btn btn-primary rounded-pill" value="Register" />
+        </div>
       </form>
+      </div>     
     </div>
   );
 }
