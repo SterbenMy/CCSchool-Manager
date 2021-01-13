@@ -31,28 +31,36 @@ export default function Login() {
     }
   };
   return (
-    <div className="page">
-      <h2>Log in</h2>
-      {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
-      <form className="form" onSubmit={submit}>
-        <label htmlFor="login-email">Email</label>
-        <input
-          id="login-email"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <label htmlFor="login-password">Password</label>
-        <input
-          id="login-password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <input type="submit" value="Log in" />
-      </form>
+    <div className="page container">
+      <div className="row g-3 m-3">
+        <h2>Log in</h2>
+          {error && (
+          <ErrorNotice message={error} clearError={() => setError(undefined)} />
+          )}
+      </div>
+      <div>
+        <form className="form" onSubmit={submit}>
+          <div>
+            <label className="col-md-1 m-2" htmlFor="login-email">Email</label>
+            <input className="col-md-3 m-2"
+              id="login-email"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="col-md-1 m-2" htmlFor="login-password">Password</label>
+            <input className="col-md-3 m-2"
+              id="login-password"
+              type="password"
+               onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="flex-row-reverse m-3">
+            <input type="submit" className="btn btn-primary rounded-pill" value="Log in" />
+          </div>  
+        </form>
+      </div>
     </div>
   );
 }
