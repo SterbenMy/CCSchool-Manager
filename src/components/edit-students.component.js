@@ -111,11 +111,14 @@ export default class EditStudent extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Editeaza Student </h3>
-                <form onSubmit={this.onSubmit}>
+            <div className="container">
+                <div>
+                   <h3>Edit student information</h3> 
+                </div>
+                <div>
+                    <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Clasa: </label>
+                        <label>Class:</label>
                         <select
                             required
                             className="form-control"
@@ -133,7 +136,7 @@ export default class EditStudent extends Component {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label>Nume: </label>
+                        <label>Name:</label>
                         <input type="text"
                             required
                             className="form-control"
@@ -142,7 +145,7 @@ export default class EditStudent extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Prenume: </label>
+                        <label>Surname:</label>
                         <input type="text"
                             required
                             className="form-control"
@@ -151,7 +154,7 @@ export default class EditStudent extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Ani : </label>
+                        <label>Age:</label>
                         <input
                             type="text"
                             className="form-control"
@@ -160,7 +163,7 @@ export default class EditStudent extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Mail: </label>
+                        <label>E-mail:</label>
                         <input type="text"
                             required
                             className="form-control"
@@ -169,16 +172,18 @@ export default class EditStudent extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Sex: </label>
+                        <label>Gender:</label>
                         <select className="form-control" onChange={this.onChangeGen} value={this.state.gen}>
-                            <option value="masculin">Masculin</option>
-                            <option value="feminin">Feminin</option>
+                            <option value="masculin">Male</option>
+                            <option value="feminin">Female</option>
                         </select>
                     </div>
                     <div className="form-group">
-                        <input type="submit" value="Editeaza" className="btn btn-primary" />
+                        <input type="submit" value="Edit" className="btn btn-primary rounded-pill"/>
                     </div>
                 </form>
+                </div>
+                
             </div>
         )
     }
