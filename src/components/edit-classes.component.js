@@ -61,11 +61,14 @@ export default class CreateClasses extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Editeaza clasa </h3>
-        <form onSubmit={this.onSubmit}>
+      <div className="container">
+        <div>
+          <h3>Edit class</h3>
+        </div>
+        <div>
+          <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
-            <label>Nume clasa: </label>
+            <label>Class name</label>
             <input  type="text"
                 required
                 className="form-control"
@@ -74,7 +77,7 @@ export default class CreateClasses extends Component {
                 />
           </div>
           <div className="form-group"> 
-            <label>An: </label>
+            <label>Year:</label>
             <input  type="text"
                 required
                 className="form-control"
@@ -83,9 +86,11 @@ export default class CreateClasses extends Component {
                 />
           </div>
           <div className="form-group">
-            <input type="submit" value="Editeaza" className="btn btn-primary" />
+            <input type="submit" value="Edit" className="btn btn-primary rounded-pill" />
           </div>
         </form>
+        </div>
+        
       </div>
     )
   }
