@@ -1,13 +1,13 @@
-FROM node:14.13.0-stretch 
+FROM node:14.15.4
 
-WORKDIR /BackStudentiClase
+WORKDIR /serverstudenti
 
-COPY package*.json ./
+COPY ./package*.json /serverstudenti/
 
 RUN npm install
 
-COPY . ./
+COPY . .
 
-EXPOSE 80
+EXPOSE 5000
 
 CMD [ "node","server.js" ]
