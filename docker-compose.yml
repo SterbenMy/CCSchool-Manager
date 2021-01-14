@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  gui:
+    image: gui
+    ports:
+      - "3001:3000"
+    environment:
+      GUI_API_ROUTE: gui-service/api
+      NODE_ENV: development
+
+  auth:
+    image: auth
+    ports:
+      - "4000:4000"
+    environment:
+      AUTH_API_ROUTE: auth-service/api
+      NODE_ENV: development
+    depends_on:
+      - db
+
+  studclass:
+    image: studclass
+    ports:
+      - 5000:5000
+    environment:
+      studclass_API_ROUTE: studclass-service/api
+      NODE_ENV: development
+
+  
+
+  db:
+    image: mongo:4.4.2
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: db-secret_username
+      MONGO_INITDB_ROOT_PASSWORD: db-secret-password
+    # volumes:
+    #  - ./Database/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    #  - databse-volume:/var/lib/postgresql/data
+    ports:
+      - "27017:27017"
+    secrets:
+      - db-secret_username
+      - db-secret-password
+      
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  databse-volume:
+
+secrets:
+  db-secret_username:
+    file: ./Secrets/db-secret-username.txt
+  db-secret-password:
+    file: ./Secrets/db-secret-password.txt
