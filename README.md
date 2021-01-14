@@ -63,3 +63,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### Start AuthBack in AuthBack folder
 ### `node index.js`
 
+### Docker syntax:
+    docker build -t imaginename .
+    docker run -it -d -p yourport:dockerport imaginename
