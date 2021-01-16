@@ -23,11 +23,11 @@ services:
   studclass:
     image: studclass
     ports:
-      - 5000:5000
+      - "5000:5000"
     environment:
       studclass_API_ROUTE: studclass-service/api
       NODE_ENV: development
-    links: 
+    depends_on: 
       - mongo
 
   mongo:

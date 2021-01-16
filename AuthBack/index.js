@@ -14,8 +14,8 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`The server has started on port: ${PORT}`));
 
 // set up mongoose
-
-//const uri = process.env.ATLAS_URI;
+/*'mongodb://mongo:27017/database'*/
+const uri = process.env.ATLAS_URI;
 mongoose.connect('mongodb://mongo:27017/database', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once('open', () => {
