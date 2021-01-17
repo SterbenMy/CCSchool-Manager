@@ -19,9 +19,19 @@ Scopul proiectului din cadrul materiei Cloud Computing este de a realiza întreg
 
 ## To Start Project
 
-### Docker-compose :
-    Introducem toate imaginile  'docker build -t imagine_nume'
-    'docker-compose up -d'
-    'docker-compose start' (rulare local)
+### Dockerfile :
+    In corespondenta cu specificul microserviciului cream cate un fisier Dockerfile, si construim imaginea respectiva
+### Docker-compose:
+    Pentru a rula toate microserficiile, cream un fisier docker-compose, si il rulam, avand acces la porturile expuse,
+        in cazul de fata, pentru a vizualiza pagina SchoolManager, accesam localhost:3001
+### School Manager
+    Proiectul ofera posibilitatea de a adauga, edita si vizualiza elevii si clasele unei scoli dpdv a unui manager.
+    Managerul, trebuie sa fie logat, sau sa-si creeze un cont, pentru a putea efectua activitatile mai sus mentionate.
+### Docker-swarm
+    Pentru a rula intr-un swarm, replicam serviciul de gui, iar baza de date o atasam nodului manager.
+### Kong
+    Serviciul de Kong la fel este atasat de nodul manager
+
+
 
 
