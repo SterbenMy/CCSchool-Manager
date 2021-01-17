@@ -25,8 +25,8 @@ services:
       - "4000:4000"
     environment:
       AUTH_API_ROUTE: auth-service/api
-      MONGO_URI: mongodb://mongo:27017/database
-      JWT_SECRET: HgGbhskj4gCQsEfMjZ222a-LYGD9NB#VqcLk56pX2!su#tH@=G
+      MONGO_URI: db-secret-uri
+      JWT_SECRET: db-secret-jwt
       NODE_ENV: development
     depends_on:
       - mongo
@@ -40,8 +40,8 @@ services:
       - "5000:5000"
     environment:
       studclass_API_ROUTE: studclass-service/api
+      MONGO_URI: db-secret-uri
       NODE_ENV: development
-      MONGO_URI: mongodb://mongo:27017/database
     depends_on: 
       - mongo
     networks:
@@ -68,8 +68,8 @@ services:
     ports: 
      - "8082:8082"
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_ADMINUSERNAME: db-secret-user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: db-secret-password
     deploy:
       placement:
         constraints: [node.role==manager]
@@ -93,3 +93,12 @@ networks:
     gui-back-auth-1:
     mongo-back-auth-1:
     adminer-1:
+secrets:
+  db-password-secret:
+    file: ./Secrets/db-secret-password.txt
+  db-user-secret:
+    file: ./Secrets/db-secret-user.txt
+  db-secret-uri:
+    file: ./Secrets/db-secret-uri.txt
+  db-secret-jwt:
+    file: ./Secrets/db-secret-jwt.txt

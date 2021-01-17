@@ -63,14 +63,13 @@ services:
     networks:
        - adminer-1
 
+
 volumes:
     mongo-volume:
-
 networks:
     gui-back-auth-1:
     mongo-back-auth-1:
     adminer-1:
-
 secrets:
   db-password-secret:
     file: ./Secrets/db-secret-password.txt
