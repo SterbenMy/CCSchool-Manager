@@ -1,68 +1,24 @@
-# Getting Started with Create React App
+# Proiect la Sisteme de calcul Cloud (CC)..............................................
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Aplicatie pentru gestionarea elevilor unei scoli
 
-## Available Scripts
+### Macari Cristian
+### Natalia Bobu
+### Liviu Cernei
 
-In the project directory, you can run:
+Scopul proiectului din cadrul materiei Cloud Computing este de a realiza întreg ciclul de viață al unei aplicații cloud native, de la etapa de concepție până la etapa de deployment.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Structura proiectului
+    1. Un microserviciu care se ocupa de authentificare si autorizare -- acest serviu se afla in folderul AuthBack. 
+    2. Un microserviciu care se ocupa elevi si clase -- acest serviciu se afla  in folderul BackStudentiClase
+    3. Un microserviciu care ofera o interfata (frontendul) -- este sursa din CCSCHOOL-MANAGER
+    4. O baza de date -  Am folosit ca bd MongoDB si ne conectam ca admin.
+    5. Portainer pentru asigurarea gestiunii din UI a clusterului
+    6. Kong pentru servirea publica a rutelor
 
 ## To Start Project
 
-### Create .env file in AuthBack:
-    add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
-    add JWT secret (JWT_SECRET=YOUR_SECRET)
-
-### Create .env file in BackStudentiClase:
-    add mongodb atlasUri(ATLAS_URI=YOUR_URI) 
-
-### First time: 
-### `npm i` in AuthBack folder
-### `npm i` in BackStudentiClase folder
-### `npm i` in School-Manager folder
-
-
-### Start BackStudentiClase in BackStudentiClase folder
-### `node server.js`
-
-### Start School-Manager(frontend) in School-Manager folder
-### `npm start`
-
-### Start AuthBack in AuthBack folder
-### `node index.js`
-
-### Docker syntax:
-    docker build -t imaginename .
-    docker run -it -d -p yourport:dockerport imaginename
+### Docker :
+    Introducem toate imaginile  'docker build -t imagine_nume'
+    
