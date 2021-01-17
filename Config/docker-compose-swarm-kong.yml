@@ -1,0 +1,104 @@
+version: "3.8"
+
+
+services:
+  gui:
+    image: gui
+    ports:
+      - "3001:3000"
+    environment:
+      GUI_API_ROUTE: schoolmanager_gui-service/api
+      NODE_ENV: development
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    networks:
+       - gui-back-auth-1
+
+  auth:
+    image: auth
+    ports:
+      - "4000:4000"
+    environment:
+      AUTH_API_ROUTE: schoolmanager_auth-service/api
+      NODE_ENV: development
+    depends_on:
+      - mongo
+    networks:
+       - gui-back-auth-1
+       - mongo-back-auth-1
+       - internal
+
+  studclass:
+    image: studclass
+    ports:
+      - "5000:5000"
+    environment:
+      studclass_API_ROUTE: schoolmanager_studclass-service/api
+      NODE_ENV: development
+    depends_on: 
+      - mongo
+    networks:
+       - gui-back-auth-1
+       - mongo-back-auth-1
+       - internal
+
+  mongo:
+    image: mongo:4.4.2
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-volume:/data/mongo
+    deploy:
+      placement:
+        constraints: (node.role==manager)
+    networks:
+       - mongo-back-auth-1
+       - adminer-1
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+     - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    deploy:
+      placement:
+        constraints: [node.role==manager]
+    networks:
+       - adminer-1
+
+  kong:
+    image: kong:latest
+    volumes:
+      - ./kong:/usr/local/kong/declarative
+    environment:
+      KONG_DATABASE: 'off'
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ports:
+      - 8080:8000
+      - 8443:8443
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - internal
+
+volumes:
+    mongo-volume:
+networks:
+    gui-back-auth-1:
+    mongo-back-auth-1:
+    adminer-1:
+    internal:
