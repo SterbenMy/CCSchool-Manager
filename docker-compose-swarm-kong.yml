@@ -1,0 +1,71 @@
+version: "3.8"
+
+
+services:
+  gui:
+    image: gui
+    ports:
+      - "3001:3000"
+    environment:
+      GUI_API_ROUTE: gui-service/api
+      NODE_ENV: development
+    deploy:
+      replicas: 
+      update_config:
+        parallelism: 3
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  auth:
+    image: auth
+    ports:
+      - "4000:4000"
+    environment:
+      AUTH_API_ROUTE: auth-service/api
+      NODE_ENV: development
+    depends_on:
+      - mongo
+    networks:
+      - internal
+
+  studclass:
+    image: studclass
+    ports:
+      - "5000:5000"
+    environment:
+      studclass_API_ROUTE: studclass-service/api
+      NODE_ENV: development
+    depends_on: 
+      - mongo
+    networks:
+      - internal
+
+  mongo:
+    image: mongo:4.4.2
+    ports:
+      - "27017:27017"
+    deploy:
+      placement:
+        constraints: (node.role==manager)
+
+  kong:
+    image: kong:latest
+    volumes:
+      - ./kong:/usr/local/kong/declarative
+    environment:
+      KONG_DATABASE: 'off'
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ports:
+      - 8080:8000
+      - 8443:8443
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - internal

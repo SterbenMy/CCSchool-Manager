@@ -9,6 +9,13 @@ services:
     environment:
       GUI_API_ROUTE: gui-service/api
       NODE_ENV: development
+    deploy:
+      replicas: 
+      update_config:
+        parallelism: 3
+        delay: 10s
+      restart_policy:
+        condition: on-failure
 
   auth:
     image: auth
@@ -34,9 +41,16 @@ services:
     image: mongo:4.4.2
     ports:
       - "27017:27017"
+    deploy:
+      placement:
+        constraints: (node.role==manager)
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports: "8081:8080"
+    stop_grace_period: 1m30s
     volumes:
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-      - ./mongo-volume:/data/mongo
-    
-
-
+      - "var/run/docker .sock:/var/run/docker .sock"
+    deploy:
+      placement:
+        constraints: (node.role==manager)

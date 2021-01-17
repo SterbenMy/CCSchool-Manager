@@ -1,0 +1,26 @@
+_format_version: "2.1"
+
+services:
+
+  - name: auth
+    url: http://schoolmanager-cluster_auth/api
+    plugins:
+      - name: key-auth
+    routes:
+      - name: auth-service-route
+        paths: 
+          - /api/auth
+          
+ -name: studclass
+  url: http://schoolmanager-cluster_studclass/api
+    plugins:
+      - name: key-auth
+    routes:
+      - name: studclass-service-route
+        paths: 
+          - /api/studclass
+
+consumers:
+  - username: schoolmanager
+    keyauth_credentials:
+      - key: managerpsw
