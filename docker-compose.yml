@@ -9,13 +9,15 @@ services:
     environment:
       GUI_API_ROUTE: gui-service/api
       NODE_ENV: development
-
+      
   auth:
     image: auth
     ports:
       - "4000:4000"
     environment:
       AUTH_API_ROUTE: auth-service/api
+      MONGO_URI: mongodb://mongo:27017/database
+      JWT_SECRET: HgGbhskj4gCQsEfMjZ222a-LYGD9NB#VqcLk56pX2!su#tH@=G
       NODE_ENV: development
     depends_on:
       - mongo
@@ -26,17 +28,26 @@ services:
       - "5000:5000"
     environment:
       studclass_API_ROUTE: studclass-service/api
+      MONGO_URI: mongodb://mongo:27017/database
       NODE_ENV: development
     depends_on: 
       - mongo
 
   mongo:
     image: mongo:4.4.2
+    restart: always
     ports:
       - "27017:27017"
     volumes:
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
       - ./mongo-volume:/data/mongo
-    
+  
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+     - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
 
 
