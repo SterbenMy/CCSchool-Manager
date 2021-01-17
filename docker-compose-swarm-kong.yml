@@ -7,7 +7,7 @@ services:
     ports:
       - "3001:3000"
     environment:
-      GUI_API_ROUTE: gui-service/api
+      GUI_API_ROUTE: schoolmanager_gui-service/api
       NODE_ENV: development
     deploy:
       replicas: 3
@@ -24,7 +24,7 @@ services:
     ports:
       - "4000:4000"
     environment:
-      AUTH_API_ROUTE: auth-service/api
+      AUTH_API_ROUTE: schoolmanager_auth-service/api
       NODE_ENV: development
     depends_on:
       - mongo
@@ -38,7 +38,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      studclass_API_ROUTE: studclass-service/api
+      studclass_API_ROUTE: schoolmanager_studclass-service/api
       NODE_ENV: development
     depends_on: 
       - mongo
