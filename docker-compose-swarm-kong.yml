@@ -10,12 +10,14 @@ services:
       GUI_API_ROUTE: gui-service/api
       NODE_ENV: development
     deploy:
-      replicas: 
+      replicas: 3
       update_config:
         parallelism: 3
         delay: 10s
       restart_policy:
         condition: on-failure
+    networks:
+       - gui-back-auth-1
 
   auth:
     image: auth
@@ -27,7 +29,9 @@ services:
     depends_on:
       - mongo
     networks:
-      - internal
+       - gui-back-auth-1
+       - mongo-back-auth-1
+       - internal
 
   studclass:
     image: studclass
@@ -39,15 +43,36 @@ services:
     depends_on: 
       - mongo
     networks:
-      - internal
+       - gui-back-auth-1
+       - mongo-back-auth-1
+       - internal
 
   mongo:
     image: mongo:4.4.2
     ports:
       - "27017:27017"
+    volumes:
+      - ./mongo-volume:/data/mongo
     deploy:
       placement:
         constraints: (node.role==manager)
+    networks:
+       - mongo-back-auth-1
+       - adminer-1
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+     - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    deploy:
+      placement:
+        constraints: [node.role==manager]
+    networks:
+       - adminer-1
 
   kong:
     image: kong:latest
@@ -69,3 +94,12 @@ services:
         constraints: [node.role == manager]
     networks:
       - internal
+
+volumes:
+    mongo-volume:
+networks:
+    gui-back-auth-1:
+    mongo-back-auth-1:
+    adminer-1:
+    internal:
+ 
