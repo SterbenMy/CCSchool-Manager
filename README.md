@@ -1,4 +1,4 @@
-# Proiect la Sisteme de calcul Cloud (CC)..............................................
+# Proiect la Sisteme de calcul Cloud (CC)
 
 ## Aplicatie pentru gestionarea elevilor unei scoli
 
@@ -19,6 +19,9 @@ Scopul proiectului din cadrul materiei Cloud Computing este de a realiza întreg
 
 ## To Start Project
 
-### Docker :
+### Docker-compose :
     Introducem toate imaginile  'docker build -t imagine_nume'
-    
+    'docker-compose up -d'
+    'docker-compose start' (rulare local)
+
+
