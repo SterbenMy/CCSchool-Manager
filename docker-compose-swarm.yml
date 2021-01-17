@@ -10,12 +10,14 @@ services:
       GUI_API_ROUTE: gui-service/api
       NODE_ENV: development
     deploy:
-      replicas: 
+      replicas: 3 
       update_config:
         parallelism: 3
         delay: 10s
       restart_policy:
         condition: on-failure
+    networks:
+       - gui-back-auth-1
 
   auth:
     image: auth
@@ -23,9 +25,14 @@ services:
       - "4000:4000"
     environment:
       AUTH_API_ROUTE: auth-service/api
+      MONGO_URI: mongodb://mongo:27017/database
+      JWT_SECRET: HgGbhskj4gCQsEfMjZ222a-LYGD9NB#VqcLk56pX2!su#tH@=G
       NODE_ENV: development
     depends_on:
       - mongo
+    networks:
+       - gui-back-auth-1
+       - mongo-back-auth-1
 
   studclass:
     image: studclass
@@ -34,23 +41,55 @@ services:
     environment:
       studclass_API_ROUTE: studclass-service/api
       NODE_ENV: development
+      MONGO_URI: mongodb://mongo:27017/database
     depends_on: 
       - mongo
+    networks:
+       - gui-back-auth-1
+       - mongo-back-auth-1
 
   mongo:
     image: mongo:4.4.2
+    restart: always
     ports:
       - "27017:27017"
+    volumes:
+      - ./mongo-volume:/data/mongo
     deploy:
       placement:
-        constraints: (node.role==manager)
+        constraints: [node.role==manager]
+    networks:
+       - mongo-back-auth-1
+       - adminer-1
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports: 
+     - "8082:8082"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+    deploy:
+      placement:
+        constraints: [node.role==manager]
+    networks:
+       - adminer-1
 
   visualizer:
-    image: dockersamples/visualizer:stable
-    ports: "8081:8080"
-    stop_grace_period: 1m30s
-    volumes:
-      - "var/run/docker .sock:/var/run/docker .sock"
-    deploy:
-      placement:
-        constraints: (node.role==manager)
+   image: dockersamples/visualizer:stable
+   ports: 
+     - "8081:8080"
+   stop_grace_period: 1m30s
+   volumes:
+     - "/var/run/docker .sock:/var/run/docker .sock"
+   deploy:
+    placement:
+       constraints: [node.role==manager]
+
+volumes:
+    mongo-volume:
+networks:
+    gui-back-auth-1:
+    mongo-back-auth-1:
+    adminer-1:
