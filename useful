@@ -1,0 +1,42 @@
+docker swarm init --advertise-addr 192.168.0.23
+# paste the recommended command into node2
+
+scp docker-compose-swarm.yml ip172-18-0-30-c0646t9lo550009cukjg@direct.labs.play-with-docker.com:.
+scp -r Secrets/ ip172-18-0-30-c0646t9lo550009cukjg@direct.labs.play-with-docker.com:.
+
+mkdir mongo-volume
+
+docker stack deploy -c docker-compose-swarm.yml schoolmanager
+
+//rename into Secret/....use.txt
+
+
+docker stack rm schoolmanager
+
+docker run -d --name nfs --privileged -v /database/data:/nfsshare -e SHARED_DIRECTORY=/nfsshare -p 2049:2049 --restart=unless-stopped itsthenetwork/nfs-server-alpine:latest
+
+docker stack ps schoolmanager --no-trunc
+
+
+
+
+$ docker stack deploy -c docker-compose-swarm.yml schoolmanager
+Ignoring unsupported options: restart
+
+Creating network schoolmanager_default
+Creating network schoolmanager_gui-back-auth-1
+Creating network schoolmanager_mongo-back-auth-1
+Creating network schoolmanager_adminer-1
+Creating secret schoolmanager_db-user-secret
+Creating secret schoolmanager_db-secret-uri
+Creating secret schoolmanager_db-secret-jwt
+Creating secret schoolmanager_db-password-secret
+Creating service schoolmanager_mongo
+Creating service schoolmanager_mongo-express
+Creating service schoolmanager_visualizer
+Creating service schoolmanager_gui
+Creating service schoolmanager_auth
+Creating service schoolmanager_studclass
+
+
+docker swarm init --advertise-addr 192.168.0.23

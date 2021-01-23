@@ -3,7 +3,7 @@ version: "3.8"
 
 services:
   gui:
-    image: gui
+    image: jaguargirl/schoolmanager:gui
     ports:
       - "3001:3000"
     environment:
@@ -20,7 +20,7 @@ services:
        - gui-back-auth-1
 
   auth:
-    image: auth
+    image: jaguargirl/schoolmanager:auth
     ports:
       - "4000:4000"
     environment:
@@ -35,7 +35,7 @@ services:
        - mongo-back-auth-1
 
   studclass:
-    image: studclass
+    image: jaguargirl/schoolmanager:studclass
     ports:
       - "5000:5000"
     environment:
@@ -49,12 +49,12 @@ services:
        - mongo-back-auth-1
 
   mongo:
-    image: mongo:4.4.2
+    image: jaguargirl/schoolmanager:mongo
     restart: always
     ports:
       - "27017:27017"
     volumes:
-      - ./mongo-volume:/data/mongo
+      - ./mongo-volume:/data/db
     deploy:
       placement:
         constraints: [node.role==manager]
@@ -63,32 +63,32 @@ services:
        - adminer-1
 
   mongo-express:
-    image: mongo-express
+    image: jaguargirl/schoolmanager:mongo-express
     restart: always
     ports: 
      - "8082:8082"
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: db-secret-user
-      ME_CONFIG_MONGODB_ADMINPASSWORD: db-secret-password
+    depends_on: 
+      - mongo
     deploy:
       placement:
         constraints: [node.role==manager]
     networks:
        - adminer-1
 
-  visualizer:
-   image: dockersamples/visualizer:stable
-   ports: 
-     - "8081:8080"
-   stop_grace_period: 1m30s
-   volumes:
-     - "/var/run/docker .sock:/var/run/docker .sock"
-   deploy:
-    placement:
-       constraints: [node.role==manager]
+  # visualizer:
+  #  image: dockersamples/visualizer:stable
+  #  ports: 
+  #    - "8081:8080"
+  #  stop_grace_period: 1m30s
+  #  volumes:
+  #    - "/var/run/docker .sock:/var/run/docker .sock"
+  #  deploy:
+  #   placement:
+  #      constraints: [node.role==manager]
 
 volumes:
     mongo-volume:
+    
 networks:
     gui-back-auth-1:
     mongo-back-auth-1:
