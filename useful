@@ -17,8 +17,7 @@ docker run -d --name nfs --privileged -v /database/data:/nfsshare -e SHARED_DIRE
 
 docker stack ps schoolmanager --no-trunc
 
-
-
+docker stack deploy --compose-file=portainer-stack.yml portainer
 
 $ docker stack deploy -c docker-compose-swarm.yml schoolmanager
 Ignoring unsupported options: restart
